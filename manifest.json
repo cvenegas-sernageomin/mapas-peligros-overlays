@@ -29,6 +29,20 @@
       "overlay": "overlays/coquimbo_norte.webp",
       "leyenda": "overlays/coquimbo_norte_leyenda.webp",
       "opacidad": 0.75
+    },
+    {
+      "id": "coquimbo_sur",
+      "titulo": "Peligro de Remociones en Masa — Región de Coquimbo, Sector Sur",
+      "region": "Coquimbo",
+      "fuente": "SERNAGEOMIN — Programa Nacional de Peligros Geológicos",
+      "anio": 2021,
+      "escala": "1:250.000",
+      "informe": "IR-COQ-03 (16024_IR_88 / IR-21-88)",
+      "proyeccion_original": "UTM 19S (EPSG:32719)",
+      "bounds": { "n": -30.194771, "s": -32.292706, "e": -70.00939, "w": -72.02419 },
+      "overlay": "overlays/coquimbo_sur.webp",
+      "leyenda": "overlays/coquimbo_sur_leyenda.webp",
+      "opacidad": 0.75
     }
   ]
 }

@@ -28,3 +28,4 @@ al marco del mapa y se reproyecta a WGS84 plate-carrée. Ver `georef_coquimbo_no
 | id | Región | Escala | Año | Informe |
 |----|--------|--------|-----|---------|
 | coquimbo_norte | Coquimbo (Sector Norte) | 1:250.000 | 2018 | IR-COQ-02 |
+| coquimbo_sur | Coquimbo (Sector Sur) | 1:250.000 | 2021 | IR-COQ-03 (IR-21-88) |
