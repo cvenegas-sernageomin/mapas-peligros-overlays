@@ -3,6 +3,20 @@
   "actualizado": "2026-07-20",
   "mapas": [
     {
+      "id": "caida_rocas_maipo",
+      "titulo": "Caída de rocas — Cajón del Maipo (San José de Maipo)",
+      "region": "Metropolitana",
+      "fuente": "Plataforma SIGMA — CIGIDEN",
+      "anio": 2021,
+      "escala": "—",
+      "informe": "Susceptibilidad y propagación de caídas de rocas (SIGMA)",
+      "proyeccion_original": "WGS84 (EPSG:4326)",
+      "bounds": { "n": -33.545573, "s": -33.824812, "e": -70.201374, "w": -70.439476 },
+      "overlay": "overlays/caida_rocas_maipo.webp",
+      "leyenda": "overlays/caida_rocas_maipo_leyenda.webp",
+      "opacidad": 0.65
+    },
+    {
       "id": "coquimbo_norte",
       "titulo": "Peligro de Remociones en Masa — Región de Coquimbo, Sector Norte",
       "region": "Coquimbo",
