@@ -21,6 +21,9 @@ from matplotlib.patches import PathPatch
 from matplotlib.collections import PathCollection
 from PIL import Image
 
+# NOTA: a diferencia de los mapas SERNAGEOMIN (PDF con grilla UTM -> OCR/warp),
+# esta capa parte de vectores YA en WGS84, asi que NO hay georreferenciacion:
+# solo se rasterizan los poligonos al bbox del dato (plate-carree) para L.imageOverlay.
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC  = os.path.join(HERE, "fuentes")   # geojson de origen
 OUT  = os.path.join(HERE, "overlays")
