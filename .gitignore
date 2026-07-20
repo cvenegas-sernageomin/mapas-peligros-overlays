@@ -1,0 +1,3 @@
+# intermedios de georreferenciacion (regenerables con los scripts georef_*.py)
+overlays/*.png
+overlays/*_meta.json

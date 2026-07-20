@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "actualizado": "2026-07-20",
+  "mapas": [
+    {
+      "id": "coquimbo_norte",
+      "titulo": "Peligro de Remociones en Masa — Región de Coquimbo, Sector Norte",
+      "region": "Coquimbo",
+      "fuente": "SERNAGEOMIN — Programa Nacional de Peligros Geológicos",
+      "anio": 2018,
+      "escala": "1:250.000",
+      "informe": "IR-COQ-02 (15633_IR_68)",
+      "proyeccion_original": "UTM 19S (EPSG:32719)",
+      "bounds": { "n": -29.017529, "s": -30.780946, "e": -69.76875, "w": -71.764805 },
+      "overlay": "overlays/coquimbo_norte.webp",
+      "leyenda": "overlays/coquimbo_norte_leyenda.webp",
+      "opacidad": 0.75
+    }
+  ]
+}
