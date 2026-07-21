@@ -34,6 +34,7 @@ al marco del mapa y se reproyecta a WGS84 plate-carrée. Ver `georef_coquimbo_no
 | valpo_valparaiso | Valparaíso — Valparaíso (Hoja 3 de 3) | 1:10.000 | 2005 | IR-05-29 |
 | ohiggins_rancagua | O'Higgins — Área de Rancagua | 1:100.000 | 2017 | Geología Ambiental Nº29 |
 | flujos_aluvionales_maipo | Metropolitana — Cuenca del Río Maipo | 1:100.000 | 2021 | Susceptibilidad de Flujos Aluvionales (SIGMA) |
+| deslizamientos_laderas_maipo | Metropolitana — Cuenca del Río Maipo | 1:100.000 | 2021 | Susceptibilidad de Deslizamientos de Laderas (SIGMA) |
 
 Las 3 hojas de Valparaíso comparten una única leyenda (`overlays/valpo_leyenda.webp`, recortada
 de la Hoja 2, la única que la trae completa) y usan datum **PSAD56** (no WGS84): el propio
@@ -56,3 +57,9 @@ Mercator (EPSG:3857, proyección nativa de las tiles) a WGS84 plate-carrée. La 
 Susceptible" viene con opacidad fija ~80% en el tile original (gris sólido); se le redujo el
 alpha en post-proceso para no tapar el satélite en las zonas sin peligro, dejando las demás
 categorías con su opacidad original. Ver `georef_flujos_aluvionales.py`.
+
+`deslizamientos_laderas_maipo` usa el mismo pipeline (mismo servicio SIGMA, mismo tipo
+`TilesOnly`, misma cuenca del Maipo), con 6 categorías en vez de 5 (agrega "Muy Bajo"). El color
+de "No Susceptible" varía entre capas SIGMA (gris (204,204,204) en flujos aluvionales, gris
+(178,178,178) aquí), así que el script lo toma dinámicamente desde `/legend?f=json` en vez de
+asumirlo fijo. Ver `georef_deslizamientos_laderas.py`.

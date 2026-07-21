@@ -113,6 +113,20 @@
       "overlay": "overlays/flujos_aluvionales.webp",
       "leyenda": "overlays/flujos_aluvionales_leyenda.webp",
       "opacidad": 0.65
+    },
+    {
+      "id": "deslizamientos_laderas_maipo",
+      "titulo": "Susceptibilidad de Deslizamientos de Laderas — Cuenca del Río Maipo",
+      "region": "Metropolitana",
+      "fuente": "Plataforma SIGMA — CIGIDEN (FONDEF ID19I10021)",
+      "anio": 2021,
+      "escala": "1:100.000",
+      "informe": "Susceptibilidad de Deslizamientos de Laderas (SIGMA)",
+      "proyeccion_original": "WGS84 (EPSG:4326), exportado desde ArcGIS MapServer teselado",
+      "bounds": { "n": -32.907444, "s": -34.292392, "e": -69.765875, "w": -71.652305 },
+      "overlay": "overlays/deslizamientos_laderas.webp",
+      "leyenda": "overlays/deslizamientos_laderas_leyenda.webp",
+      "opacidad": 0.65
     }
   ]
 }
