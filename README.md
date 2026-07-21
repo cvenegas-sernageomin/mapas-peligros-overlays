@@ -29,3 +29,11 @@ al marco del mapa y se reproyecta a WGS84 plate-carrée. Ver `georef_coquimbo_no
 |----|--------|--------|-----|---------|
 | coquimbo_norte | Coquimbo (Sector Norte) | 1:250.000 | 2018 | IR-COQ-02 |
 | coquimbo_sur | Coquimbo (Sector Sur) | 1:250.000 | 2021 | IR-COQ-03 (IR-21-88) |
+| valpo_concon | Valparaíso — Concón (Hoja 1 de 3) | 1:10.000 | 2005 | IR-05-29 |
+| valpo_vina_del_mar | Valparaíso — Viña del Mar (Hoja 2 de 3) | 1:10.000 | 2005 | IR-05-29 |
+| valpo_valparaiso | Valparaíso — Valparaíso (Hoja 3 de 3) | 1:10.000 | 2005 | IR-05-29 |
+
+Las 3 hojas de Valparaíso comparten una única leyenda (`overlays/valpo_leyenda.webp`, recortada
+de la Hoja 2, la única que la trae completa) y usan datum **PSAD56** (no WGS84): el propio
+informe declara "Datum Provisorio Sudamericano (PSAD), La Canoa, Venezuela, 1956", por lo que
+se georreferenciaron con EPSG:24879 en vez de EPSG:32719. Ver `georef_valparaiso.py`.
