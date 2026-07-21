@@ -33,6 +33,7 @@ al marco del mapa y se reproyecta a WGS84 plate-carrée. Ver `georef_coquimbo_no
 | valpo_vina_del_mar | Valparaíso — Viña del Mar (Hoja 2 de 3) | 1:10.000 | 2005 | IR-05-29 |
 | valpo_valparaiso | Valparaíso — Valparaíso (Hoja 3 de 3) | 1:10.000 | 2005 | IR-05-29 |
 | ohiggins_rancagua | O'Higgins — Área de Rancagua | 1:100.000 | 2017 | Geología Ambiental Nº29 |
+| flujos_aluvionales_maipo | Metropolitana — Cuenca del Río Maipo | 1:100.000 | 2021 | Susceptibilidad de Flujos Aluvionales (SIGMA) |
 
 Las 3 hojas de Valparaíso comparten una única leyenda (`overlays/valpo_leyenda.webp`, recortada
 de la Hoja 2, la única que la trae completa) y usan datum **PSAD56** (no WGS84): el propio
@@ -45,3 +46,13 @@ secundario distinto ("Densidad de Remociones en Masa", 1:250.000) que **no** se 
 UTM con rotación real de ~1° (mismo caso que `coquimbo_sur`): se usó el modelo afín completo de
 6 parámetros. Datum SIRGAS (≈ WGS84, EPSG:32719), a diferencia de las hojas de Valparaíso. Ver
 `georef_ohiggins_rancagua.py`.
+
+`flujos_aluvionales_maipo` es distinto a los anteriores: no viene de un PDF escaneado sino de un
+**raster ya pre-teselado** (ArcGIS MapServer `singleFusedMapCache`, capabilities `TilesOnly`) de
+la Plataforma SIGMA (CIGIDEN). El endpoint `/export` dinámico **no** está disponible en este tipo
+de servicio (devuelve 404); el pipeline descarga el mosaico de tiles cacheadas (nivel de zoom
+máximo del servicio) que cubre el bbox, lo recorta exacto y lo reproyecta (warp vertical) de Web
+Mercator (EPSG:3857, proyección nativa de las tiles) a WGS84 plate-carrée. La categoría "No
+Susceptible" viene con opacidad fija ~80% en el tile original (gris sólido); se le redujo el
+alpha en post-proceso para no tapar el satélite en las zonas sin peligro, dejando las demás
+categorías con su opacidad original. Ver `georef_flujos_aluvionales.py`.

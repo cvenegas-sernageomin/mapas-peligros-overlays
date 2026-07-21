@@ -99,6 +99,20 @@
       "overlay": "overlays/ohiggins_rancagua.webp",
       "leyenda": "overlays/ohiggins_rancagua_leyenda.webp",
       "opacidad": 0.75
+    },
+    {
+      "id": "flujos_aluvionales_maipo",
+      "titulo": "Susceptibilidad de Flujos Aluvionales — Cuenca del Río Maipo",
+      "region": "Metropolitana",
+      "fuente": "Plataforma SIGMA — CIGIDEN (FONDEF ID19I10021)",
+      "anio": 2021,
+      "escala": "1:100.000",
+      "informe": "Susceptibilidad de Flujos Aluvionales (SIGMA)",
+      "proyeccion_original": "WGS84 (EPSG:4326), exportado desde ArcGIS MapServer teselado",
+      "bounds": { "n": -32.907483, "s": -34.292426, "e": -69.766117, "w": -71.651594 },
+      "overlay": "overlays/flujos_aluvionales.webp",
+      "leyenda": "overlays/flujos_aluvionales_leyenda.webp",
+      "opacidad": 0.65
     }
   ]
 }
