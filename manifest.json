@@ -85,6 +85,20 @@
       "overlay": "overlays/valpo_valparaiso.webp",
       "leyenda": "overlays/valpo_leyenda.webp",
       "opacidad": 0.75
+    },
+    {
+      "id": "ohiggins_rancagua",
+      "titulo": "Peligro de Remociones en Masa — Área de Rancagua (Región de O'Higgins)",
+      "region": "O'Higgins",
+      "fuente": "SERNAGEOMIN — Carta Geológica de Chile, Serie Geología Ambiental",
+      "anio": 2017,
+      "escala": "1:100.000",
+      "informe": "Carta Geológica de Chile - Geología Ambiental Nº29",
+      "proyeccion_original": "UTM 19S / SIRGAS (EPSG:32719)",
+      "bounds": { "n": -33.999869, "s": -34.249935, "e": -70.49964, "w": -71.00027 },
+      "overlay": "overlays/ohiggins_rancagua.webp",
+      "leyenda": "overlays/ohiggins_rancagua_leyenda.webp",
+      "opacidad": 0.75
     }
   ]
 }
