@@ -1,7 +1,49 @@
 {
   "version": 1,
-  "actualizado": "2026-07-21",
+  "actualizado": "2026-07-24",
   "mapas": [
+    {
+      "id": "cruz_de_cana_contexto",
+      "titulo": "Plano de Evacuación ante Amenaza de Remoción en Masa — Cruz de Caña (contexto)",
+      "region": "Coquimbo",
+      "fuente": "SENAPRED / SERNAGEOMIN / Municipalidad de Coquimbo",
+      "anio": 2025,
+      "escala": "1:20.000 aprox.",
+      "informe": "Plano de evacuación Cruz de Caña, Comuna de Coquimbo (COD 225041021, edición julio 2025)",
+      "proyeccion_original": "WGS84 geográfico (lat/lon), sin proyección métrica declarada",
+      "bounds": { "n": -29.994983, "s": -30.073093, "e": -71.138182, "w": -71.262688 },
+      "overlay": "overlays/cruz_de_cana_contexto.webp",
+      "leyenda": "overlays/cruz_de_cana_leyenda.webp",
+      "opacidad": 0.85
+    },
+    {
+      "id": "cruz_de_cana_detalle",
+      "titulo": "Plano de Evacuación ante Amenaza de Remoción en Masa — Cruz de Caña (zoom urbano)",
+      "region": "Coquimbo",
+      "fuente": "SENAPRED / SERNAGEOMIN / Municipalidad de Coquimbo",
+      "anio": 2025,
+      "escala": "1:5.000 aprox.",
+      "informe": "Plano de evacuación Cruz de Caña, Comuna de Coquimbo (COD 225041021, edición julio 2025)",
+      "proyeccion_original": "WGS84 geográfico (lat/lon), sin proyección métrica declarada",
+      "bounds": { "n": -30.008649, "s": -30.030254, "e": -71.177877, "w": -71.218213 },
+      "overlay": "overlays/cruz_de_cana_detalle.webp",
+      "leyenda": "overlays/cruz_de_cana_leyenda.webp",
+      "opacidad": 0.85
+    },
+    {
+      "id": "el_romero_flujos_inundacion",
+      "titulo": "Susceptibilidad de Flujos de Detritos e Inundación — Sector Canal El Romero / Canal San Pedro (La Serena)",
+      "region": "Coquimbo",
+      "fuente": "Estudio de infraestructura de riego (canales El Romero / San Pedro) — SERNAGEOMIN",
+      "anio": 2026,
+      "escala": "1:5.000 aprox.",
+      "informe": "Zonificacion.jpg (imagen renderizada, sin metadata de georreferenciación)",
+      "proyeccion_original": "UTM 19S / WGS84 (EPSG:32719, asumido — no declarado en la imagen)",
+      "bounds": { "n": -29.951821, "s": -29.962258, "e": -71.08077, "w": -71.095004 },
+      "overlay": "overlays/el_romero_flujos_inundacion.webp",
+      "leyenda": "overlays/el_romero_flujos_inundacion_leyenda.webp",
+      "opacidad": 0.8
+    },
     {
       "id": "atacama_copiapo_hoja1",
       "titulo": "Susceptibilidad de Remociones en Masa — Cuenca del Río Copiapó (Hoja 1 de 4, costa/Caldera)",
