@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizado": "2026-07-24",
+  "actualizado": "2026-07-27",
   "mapas": [
     {
       "id": "cruz_de_cana_contexto",
@@ -29,6 +29,20 @@
       "overlay": "overlays/cruz_de_cana_detalle.webp",
       "leyenda": "overlays/cruz_de_cana_leyenda.webp",
       "opacidad": 0.85
+    },
+    {
+      "id": "islon_flujos_inundacion",
+      "titulo": "Áreas expuestas a remociones en masa tipo flujo (aluviones) e inundaciones — Sector El Islón (Comuna de Coquimbo)",
+      "region": "Coquimbo",
+      "fuente": "SERNAGEOMIN",
+      "anio": 2026,
+      "escala": "1:10.000",
+      "informe": "Fig. 19 — Sector El Islón, Comuna de Coquimbo, Región de Coquimbo",
+      "proyeccion_original": "UTM 19S / WGS84 (EPSG:32719, asumido — no declarado en la imagen; confirmado por shapefiles fuente Islon.7z)",
+      "bounds": { "n": -29.888959, "s": -29.908288, "e": -71.172979, "w": -71.199694 },
+      "overlay": "overlays/islon_flujos_inundacion.webp",
+      "leyenda": "overlays/islon_flujos_inundacion_leyenda.webp",
+      "opacidad": 0.8
     },
     {
       "id": "el_romero_flujos_inundacion",
