@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizado": "2026-07-27",
+  "actualizado": "2026-07-28",
   "mapas": [
     {
       "id": "cruz_de_cana_contexto",
@@ -10,8 +10,8 @@
       "anio": 2025,
       "escala": "1:20.000 aprox.",
       "informe": "Plano de evacuación Cruz de Caña, Comuna de Coquimbo (COD 225041021, edición julio 2025)",
-      "proyeccion_original": "WGS84 geográfico (lat/lon), sin proyección métrica declarada",
-      "bounds": { "n": -29.994983, "s": -30.073093, "e": -71.138182, "w": -71.262688 },
+      "proyeccion_original": "WGS84 geográfico (lat/lon); imagen rotada ~1.1°, reproyectada a plate-carrée (warp)",
+      "bounds": { "n": -29.994986, "s": -30.075120, "e": -71.134966, "w": -71.261117 },
       "overlay": "overlays/cruz_de_cana_contexto.webp",
       "leyenda": "overlays/cruz_de_cana_leyenda.webp",
       "opacidad": 0.85
@@ -24,8 +24,8 @@
       "anio": 2025,
       "escala": "1:5.000 aprox.",
       "informe": "Plano de evacuación Cruz de Caña, Comuna de Coquimbo (COD 225041021, edición julio 2025)",
-      "proyeccion_original": "WGS84 geográfico (lat/lon), sin proyección métrica declarada",
-      "bounds": { "n": -30.008649, "s": -30.030254, "e": -71.177877, "w": -71.218213 },
+      "proyeccion_original": "WGS84 geográfico (lat/lon); imagen rotada ~1.1°, reproyectada a plate-carrée (warp)",
+      "bounds": { "n": -30.008716, "s": -30.030771, "e": -71.177725, "w": -71.217972 },
       "overlay": "overlays/cruz_de_cana_detalle.webp",
       "leyenda": "overlays/cruz_de_cana_leyenda.webp",
       "opacidad": 0.85

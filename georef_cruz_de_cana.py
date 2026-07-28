@@ -3,47 +3,40 @@ Georreferencia "CRUZ DE CANA (2).pdf" (SENAPRED / SERNAGEOMIN, "Plano de
 Evacuacion ante Amenaza de Remocion en Masa", Region de Coquimbo, Comuna de
 Coquimbo, sector Cruz de Cana, Edicion julio 2025, COD 225041021).
 
-- PDF de 1 pagina que en realidad contiene DOS mapas apilados verticalmente,
-  cada uno con su PROPIA grilla geografica (grados/minutos/segundos, WGS84
-  lat/lon, NO UTM):
-  - Mapa 1 (arriba): vista de CONTEXTO de toda la quebrada/cuenca (area de
-    evacuacion en rosado sobre el patron dendritico completo), con un
-    rectangulo rojo que delimita el area que se amplia abajo.
-  - Mapa 2 (abajo): ZOOM del sector urbano (calles, vias de evacuacion,
-    puntos de encuentro PE).
-  Cada mapa tiene su propio marco/grilla, a ESCALA DISTINTA -> se georreferencian
-  por separado, cada uno con su propio fit.
-- Grillas NEGRAS (no azules como los mapas SERNAGEOMIN de PDF con grilla UTM),
-  con marca de tick + etiqueta grados/min/seg fuera del marco:
-  - Mapa 1: 3 lineas de latitud (30d0'S, 30d3'S, 30d6'S, paso 3') detectadas en
-    el margen izquierdo de TODA la pagina (un marco "decorativo" exterior que
-    en realidad lleva la escala del Mapa 1 continuada mas alla de su propio
-    borde inferior); longitud leida en la FILA INFERIOR de etiquetas al pie de
-    la pagina (71d15'W, 71d12'W, 71d9'W, paso 3').
-  - Mapa 2: su propio marco INTERIOR (mas angosto que el exterior) con solo
-    UNA linea de latitud visible (30d1'0"S, el area es chica) y 3 de longitud
-    (71d13'W, 71d12'W, 71d11'W, paso 1') en la FILA SUPERIOR de etiquetas al
-    pie (justo bajo el borde del propio Mapa 2).
-- GOTCHA (confirmado numericamente con el Mapa 1, que tiene grilla completa en
-  ambos ejes): la imagen base es un mosaico satelital en una proyeccion donde
-  los PIXELES son proporcionales a METROS reales (no a grados) -> pixeles por
-  grado de longitud / pixeles por grado de latitud = cos(latitud) (Mapa 1 dio
-  1.150 vs cos^-1(30 deg)=1.155, error <0.5%). Como el Mapa 2 solo trae UNA
-  linea de latitud (no alcanza a haber una segunda dentro del area tan chica),
-  se usa esta relacion para derivar su escala vertical (grados lat/pixel) a
-  partir de su escala horizontal (grados lon/pixel, con 3 puntos limpios) mas
-  la constante 111320 m/grado, en vez de asumir (incorrecto) que
-  grados/pixel es igual en ambos ejes.
-- Verificado componiendo ambos bbox sobre satelital Esri real: el pueblo/valle
-  encaja exactamente (Mapa 1) y la trama de calles encaja exactamente (Mapa 2).
-- Salida: 2 overlays WebP (recorte directo, sin warp: no hay rotacion en
-  ninguno de los dos mapas) + 1 leyenda compartida (recortada del recuadro
-  LEYENDA que trae el Mapa 1, valida para ambos: mismos simbolos).
+PDF de 1 pagina con DOS mapas apilados (contexto arriba, zoom urbano abajo),
+cada uno con su propia grilla geografica lat/lon (grados/min/seg, WGS84).
+
+=== CORRECCION (v2): AMBOS MAPAS ESTAN ROTADOS ~1.12 grados ===
+La version anterior asumia "sin rotacion" y hacia un fit lineal por ejes
+separados, ademas de leer las etiquetas de longitud del Mapa 1 en el pie de
+pagina (posiciones ~[400,1665,2930]) tratandolas como verticales. Medido con
+los ticks reales: la MISMA linea de longitud del Mapa 1 esta en x=316 en el
+borde superior (py=393) y en x=398 en el pie (py=4590) -> los meridianos estan
+inclinados ~1.12 grados. Igual el Mapa 2 (tick de latitud izq py=3361, der
+py=3303). Como Leaflet imageOverlay NO soporta rotacion, cada mapa se
+**warpea** a plate-carree (norte arriba) con cv2.remap, igual que la variante A
+de los PDF SERNAGEOMIN con grilla UTM.
+
+Puntos de control MEDIDOS (deteccion de ticks/grilla, ver historial de la
+sesion de auditoria):
+  MAPA 1 (grilla de la pagina completa):
+    Longitud (W->E: -71.25, -71.20, -71.15):
+      borde superior py=393 : x = [316, 1583, 2849]
+      pie de pagina  py=4590: x = [398, 1663, 2928]   (misma linea, +82px = rotacion)
+    Latitud (N->S: -30.00, -30.05, -30.10):
+      margen izq x=79: py = [539, 1994, 3449]
+  MAPA 2 (grilla propia, zoom):
+    Longitud (W->E: -71.2167, -71.20, -71.1833) borde inferior py~4540: x=[242,1508,2775]
+    Latitud (linea unica -30.0167 = 30d1'0"S): (142,3361) izq y (3165,3303) der
+      -> escala vertical por isotropia (m/px iguales en ambos ejes).
+
+Cada affine (px,py)->(lon,lat) se construye por gradientes (rotacion + escala +
+ancla) y se VERIFICA contra todos los ticks antes de warpear (residual < 1 px).
 """
 import numpy as np, json
 from PIL import Image
 from pathlib import Path
-import fitz
+import fitz, cv2
 
 PDF = r"C:\Users\carlos.venegas\Downloads\CRUZ DE CAÑA (2).pdf"
 OUT = Path(r"C:\Users\carlos.venegas\Documents\mapas-peligros-overlays\overlays")
@@ -51,25 +44,9 @@ OUT.mkdir(parents=True, exist_ok=True)
 DPI = 200
 MAX_PX = 3000
 
-# --- anclas de grilla leidas por deteccion automatica (ver docstring) ---
-# Mapa 1 (contexto): marco propio x=[79,3229] y=[393,2666]
-M1_X0, M1_X1, M1_Y0, M1_Y1 = 79, 3229, 393, 2666
-M1_PX_LON = [400, 1665, 2930]
-M1_LON = [-71 - 15 / 60, -71 - 12 / 60, -71 - 9 / 60]
-M1_PY_LAT = [539, 1994, 3449]
-M1_LAT = [-30 - 0 / 60, -30 - 3 / 60, -30 - 6 / 60]
-
-# Mapa 2 (zoom urbano): marco propio x=[142,3165] y=[2666,4536]
-M2_X0, M2_X1, M2_Y0, M2_Y1 = 142, 3165, 2666, 4536
-M2_PX_LON = [252, 1519, 2750]
-M2_LON = [-71 - 13 / 60, -71 - 12 / 60, -71 - 11 / 60]
-M2_PY_LAT_ANCHOR = 3360.0
-M2_LAT_ANCHOR = -30 - 1 / 60
-
-# leyenda: recuadro dentro del marco del Mapa 1 (esquina inferior izquierda)
-LEG_X0, LEG_X1, LEG_Y0, LEG_Y1 = 101, 641, 1983, 2350
-
-M_PER_DEG_LAT = 111320.0
+# metros por grado a ~30.03 S
+MLAT = 110852.0
+MLON = 111320.0 * np.cos(np.radians(30.03))   # ~96366
 
 
 def render():
@@ -82,15 +59,86 @@ def render():
     return np.ascontiguousarray(img)
 
 
-def save_crop(img, x0, x1, y0, y1, name, bounds, max_px=MAX_PX):
-    crop = img[y0:y1, x0:x1]
-    h, w = crop.shape[:2]
-    if w > max_px:
-        nh = int(round(h * max_px / w))
-        crop = np.array(Image.fromarray(crop).resize((max_px, nh), Image.LANCZOS))
-    webp = OUT / f"{name}.webp"
-    Image.fromarray(crop).save(webp, "WEBP", quality=88, method=6)
-    print(f"  {name}.webp  {crop.shape[1]}x{crop.shape[0]}  bounds={bounds}")
+def affine_from_lon(al1, al2, cl, lat_anchor):
+    """
+    Dado el plano de longitud lon=al1*px+al2*py+cl, construye el affine completo
+    (px,py)->(lon,lat) asumiendo transformacion ORTOGONAL isotropa en metros con
+    EJE Y INVERTIDO (imagen: py hacia abajo = sur) -> rotacion + reflexion:
+      aa1 = (MLON/MLAT)*al2 ;  aa2 = -(MLON/MLAT)*al1   (aa2<0: lat baja al bajar py)
+    y ca desde un ancla de latitud (px,py,lat).
+    """
+    k = MLON / MLAT
+    aa1 = k * al2
+    aa2 = -k * al1
+    (pxA, pyA, latA) = lat_anchor
+    ca = latA - aa1 * pxA - aa2 * pyA
+    return np.array([[al1, al2, cl], [aa1, aa2, ca]])
+
+
+def lon_plane_lsq(pts):
+    """Ajusta lon = al1*px + al2*py + cl por minimos cuadrados. pts: (px,py,lon)."""
+    A = np.array([[px, py, 1.0] for px, py, _ in pts])
+    b = np.array([lon for *_, lon in pts])
+    coef, *_ = np.linalg.lstsq(A, b, rcond=None)
+    return coef  # al1, al2, cl
+
+
+def lon_plane_from_dir(lon_dir, lon_step_deg, lon_perp_px, lon_anchor):
+    """Plano de longitud a partir de la direccion de las lineas de lon + paso + ancla."""
+    u = np.array(lon_dir, float); u /= np.linalg.norm(u)
+    n = np.array([u[1], -u[0]])                 # perp = direccion de +lon (E)
+    if n[0] < 0:
+        n = -n
+    g = (lon_step_deg / lon_perp_px) * n        # (al1, al2)
+    (pxA, pyA, lonA) = lon_anchor
+    cl = lonA - g[0] * pxA - g[1] * pyA
+    return g[0], g[1], cl
+
+
+def verify(A, lon_pts, lat_pts, tag):
+    m = 0.0
+    for (px, py, lon) in lon_pts:
+        plon = A[0, 0] * px + A[0, 1] * py + A[0, 2]
+        m = max(m, abs(plon - lon) / (abs(A[0, 0]) + 1e-12))   # error en px
+    for (px, py, lat) in lat_pts:
+        plat = A[1, 0] * px + A[1, 1] * py + A[1, 2]
+        m = max(m, abs(plat - lat) / (abs(A[1, 1]) + 1e-12))
+    print(f"  [{tag}] residual max = {m:.2f} px")
+    assert m < 6.0, f"residual demasiado grande en {tag}"
+
+
+def warp(img, A, x0, x1, y0, y1, name, max_px=MAX_PX):
+    """Warpea el recorte [x0:x1,y0:y1] a plate-carree usando el affine px->geo."""
+    M = A[:, :2]
+    c = A[:, 2]
+    Minv = np.linalg.inv(M)
+    # bbox geo de las 4 esquinas del recorte
+    corners = [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]
+    geos = [M @ np.array([cx, cy]) + c for (cx, cy) in corners]
+    lons = [g[0] for g in geos]; lats = [g[1] for g in geos]
+    w, e = min(lons), max(lons)
+    s, n = min(lats), max(lats)
+    # resolucion de salida ~ preservando px
+    aspect_m = ((e - w) * MLON) / ((n - s) * MLAT)
+    W = min(max_px, x1 - x0)
+    H = int(round(W / aspect_m))
+    # mapas de muestreo: para cada pixel de salida (i,j) -> lon,lat -> px,py fuente
+    ii, jj = np.meshgrid(np.arange(W), np.arange(H))
+    lon = w + (ii + 0.5) / W * (e - w)
+    lat = n - (jj + 0.5) / H * (n - s)
+    d = np.stack([lon - c[0], lat - c[1]], axis=-1)      # (H,W,2)
+    src = d @ Minv.T                                     # (H,W,2) -> px,py
+    map_x = src[:, :, 0].astype(np.float32)
+    map_y = src[:, :, 1].astype(np.float32)
+    warped = cv2.remap(img, map_x, map_y, interpolation=cv2.INTER_LINEAR,
+                       borderMode=cv2.BORDER_CONSTANT, borderValue=(255, 255, 255))
+    # alpha: dentro del recorte fuente
+    inside = ((map_x >= x0) & (map_x < x1) & (map_y >= y0) & (map_y < y1)).astype(np.uint8) * 255
+    rgba = np.dstack([warped, inside])
+    Image.fromarray(rgba, "RGBA").save(OUT / f"{name}.webp", "WEBP", quality=88, method=6)
+    b = dict(n=round(n, 6), s=round(s, 6), e=round(e, 6), w=round(w, 6))
+    print(f"  {name}.webp  {W}x{H}  bounds={b}")
+    return b
 
 
 def main():
@@ -98,52 +146,45 @@ def main():
     H, W = img.shape[:2]
     print(f"Render {W}x{H} @ {DPI}dpi")
 
-    # --- Mapa 1: fit lineal simple en cada eje (sin rotacion) ---
-    aE1, cE1 = np.polyfit(M1_PX_LON, M1_LON, 1)
-    aN1, cN1 = np.polyfit(M1_PY_LAT, M1_LAT, 1)
-    res_e1 = float(np.max(np.abs(np.polyval([aE1, cE1], M1_PX_LON) - np.array(M1_LON))))
-    res_n1 = float(np.max(np.abs(np.polyval([aN1, cN1], M1_PY_LAT) - np.array(M1_LAT))))
-    print(f"  Mapa1 E={aE1:.10f}*px+{cE1:.6f}  res={res_e1:.7f} deg")
-    print(f"  Mapa1 N={aN1:.10f}*py+{cN1:.6f}  res={res_n1:.7f} deg")
-    ratio = aE1 / (-aN1)
-    print(f"  Mapa1 ratio pxE/pxN = {ratio:.4f}  (1/cos(lat) esperado)")
+    # ================= MAPA 1 (contexto) =================
+    # Longitud: 6 puntos MEDIDOS en 2 alturas (borde superior py393 y pie py4590)
+    # -> el ajuste LSQ captura la rotacion (al2 != 0). Latitud: por isotropia.
+    al1, al2, cl = lon_plane_lsq([
+        (316, 393, -71.25), (1583, 393, -71.20), (2849, 393, -71.15),
+        (398, 4590, -71.25), (1663, 4590, -71.20), (2928, 4590, -71.15)])
+    A1 = affine_from_lon(al1, al2, cl, (79, 539, -30.00))
+    print(f"  Mapa1 rotacion ~ {np.degrees(np.arctan2(-al2, al1)):.3f} deg")
+    verify(A1,
+        [(316, 393, -71.25), (1583, 393, -71.20), (2849, 393, -71.15),
+         (398, 4590, -71.25), (1663, 4590, -71.20), (2928, 4590, -71.15)],
+        [(79, 539, -30.00), (79, 1994, -30.05), (79, 3449, -30.10)],
+        "MAPA1")
 
-    west1, east1 = aE1 * M1_X0 + cE1, aE1 * M1_X1 + cE1
-    north1, south1 = aN1 * M1_Y0 + cN1, aN1 * M1_Y1 + cN1
-    b1 = dict(n=round(north1, 6), s=round(south1, 6), e=round(east1, 6), w=round(west1, 6))
+    # ================= MAPA 2 (zoom urbano) =================
+    # Longitud solo con ticks al pie (una altura) -> la rotacion se toma de la
+    # linea de LATITUD (izq py3361, der py3303). Latitud: por isotropia.
+    m2_lat_dir = (3165 - 142, 3303 - 3361)          # direccion de la linea de lat
+    m2_lon_dir = (m2_lat_dir[1], -m2_lat_dir[0])     # lineas de lon perpendiculares
+    al1b, al2b, clb = lon_plane_from_dir(m2_lon_dir, 1.0 / 60.0, 1266.5, (1508, 4540, -71.20))
+    A2 = affine_from_lon(al1b, al2b, clb, (142, 3361, -30.0 - 1 / 60))
+    print(f"  Mapa2 rotacion ~ {np.degrees(np.arctan2(-al2b, al1b)):.3f} deg")
+    verify(A2,
+        [(242, 4540, -71.2167), (1508, 4540, -71.20), (2775, 4540, -71.1833)],
+        [(142, 3361, -30.01667), (3165, 3303, -30.01667)],
+        "MAPA2")
 
-    # --- Mapa 2: longitud con 3 puntos; latitud derivada via cos(lat) ---
-    aE2, cE2 = np.polyfit(M2_PX_LON, M2_LON, 1)
-    res_e2 = float(np.max(np.abs(np.polyval([aE2, cE2], M2_PX_LON) - np.array(M2_LON))))
-    print(f"  Mapa2 E={aE2:.10f}*px+{cE2:.6f}  res={res_e2:.7f} deg")
+    # ---- warp + recortes ----
+    b1 = warp(img, A1, 79, 3229, 393, 2666, "cruz_de_cana_contexto")
+    b2 = warp(img, A2, 142, 3165, 2666, 4536, "cruz_de_cana_detalle")
 
-    lat0 = M2_LAT_ANCHOR
-    coslat = np.cos(np.radians(abs(lat0)))
-    m_per_deg_lon = M_PER_DEG_LAT * coslat
-    m_per_px_x = abs(aE2) * m_per_deg_lon
-    lat_per_px = -(m_per_px_x / M_PER_DEG_LAT)
-    cN2 = M2_LAT_ANCHOR - lat_per_px * M2_PY_LAT_ANCHOR
-    print(f"  Mapa2 N(derivado)={lat_per_px:.10f}*py+{cN2:.6f}")
-
-    west2, east2 = aE2 * M2_X0 + cE2, aE2 * M2_X1 + cE2
-    north2, south2 = lat_per_px * M2_Y0 + cN2, lat_per_px * M2_Y1 + cN2
-    b2 = dict(n=round(north2, 6), s=round(south2, 6), e=round(east2, 6), w=round(west2, 6))
-
-    print(f"  Mapa1 bbox: {b1}")
-    print(f"  Mapa2 bbox: {b2}")
-    dentro = b2['w'] >= b1['w'] and b2['e'] <= b1['e'] and b2['s'] >= b1['s'] and b2['n'] <= b1['n']
-    print(f"  check: Mapa2 dentro de Mapa1 = {dentro}")
-
-    save_crop(img, M1_X0, M1_X1, M1_Y0, M1_Y1, "cruz_de_cana_contexto", b1)
-    save_crop(img, M2_X0, M2_X1, M2_Y0, M2_Y1, "cruz_de_cana_detalle", b2)
-
-    leg = img[LEG_Y0:LEG_Y1, LEG_X0:LEG_X1]
+    # leyenda: recuadro dentro del Mapa 1 (esquina inferior izquierda), sin warp (es texto)
+    leg = img[1983:2350, 101:641]
     Image.fromarray(leg).save(OUT / "cruz_de_cana_leyenda.webp", "WEBP", quality=90, method=6)
     print(f"  leyenda -> cruz_de_cana_leyenda.webp  {leg.shape[1]}x{leg.shape[0]}")
 
-    meta = {"cruz_de_cana_contexto": b1, "cruz_de_cana_detalle": b2}
-    (OUT / "cruz_de_cana_meta.json").write_text(json.dumps(meta, indent=2))
-    print("META guardada en cruz_de_cana_meta.json")
+    (OUT / "cruz_de_cana_meta.json").write_text(json.dumps(
+        {"cruz_de_cana_contexto": b1, "cruz_de_cana_detalle": b2}, indent=2))
+    print("META:", b1, b2)
 
 
 if __name__ == "__main__":
