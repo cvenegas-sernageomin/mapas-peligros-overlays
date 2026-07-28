@@ -239,6 +239,48 @@
       "overlay": "overlays/deslizamientos_laderas.webp",
       "leyenda": "overlays/deslizamientos_laderas_leyenda.webp",
       "opacidad": 0.65
+    },
+    {
+      "id": "flujos_sjmaipo_peligro",
+      "titulo": "Peligro por Flujos — Cuenca Alta Río Maipo (San José de Maipo)",
+      "region": "Metropolitana",
+      "fuente": "SERNAGEOMIN",
+      "anio": 2026,
+      "escala": "1:25.000 aprox.",
+      "informe": "Mapa de peligro de flujos de la cuenca alta del río Maipo, Comuna de San José de Maipo",
+      "proyeccion_original": "WGS84 geográfico (lat/lon)",
+      "bounds": { "n": -32.92233425710519, "s": -34.41656692456429, "e": -69.68926470585771, "w": -70.62618632977818 },
+      "overlay": "overlays/flujos_sjmaipo_peligro.webp",
+      "leyenda": null,
+      "opacidad": 0.8
+    },
+    {
+      "id": "flujos_lobar_alcance",
+      "titulo": "Grado de Peligro por Alcance de Flujos — Cuenca Río Mapocho (Lo Barnechea)",
+      "region": "Metropolitana",
+      "fuente": "SERNAGEOMIN",
+      "anio": 2026,
+      "escala": "1:20.000 aprox.",
+      "informe": "Mapa de grado de peligro por alcance de flujos de la cuenca alta del río Mapocho, Comuna de Lo Barnechea",
+      "proyeccion_original": "WGS84 geográfico (lat/lon)",
+      "bounds": { "n": -33.0538833218287, "s": -33.53291001155171, "e": -70.1287109778595, "w": -70.65112849954863 },
+      "overlay": "overlays/flujos_lobar_alcance.webp",
+      "leyenda": null,
+      "opacidad": 0.8
+    },
+    {
+      "id": "flujos_lobar_generacion",
+      "titulo": "Grado de Peligro por Generación de Flujos — Cuenca Río Mapocho (Lo Barnechea)",
+      "region": "Metropolitana",
+      "fuente": "SERNAGEOMIN",
+      "anio": 2026,
+      "escala": "1:20.000 aprox.",
+      "informe": "Mapa de grado de peligro por generación de flujos de la cuenca alta del río Mapocho, Comuna de Lo Barnechea",
+      "proyeccion_original": "WGS84 geográfico (lat/lon)",
+      "bounds": { "n": -33.05388332188512, "s": -33.53291001160818, "e": -70.12871097786802, "w": -70.65112849955756 },
+      "overlay": "overlays/flujos_lobar_generacion.webp",
+      "leyenda": null,
+      "opacidad": 0.8
     }
   ]
 }
