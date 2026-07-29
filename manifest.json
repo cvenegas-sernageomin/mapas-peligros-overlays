@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "actualizado": "2026-07-28b",
+  "version": 3,
+  "actualizado": "2026-07-28c",
   "mapas": [
     {
       "id": "cruz_de_cana_contexto",
@@ -392,6 +392,48 @@
       "bounds": { "n": -36.771893, "s": -36.962725, "e": -72.987613, "w": -73.173062 },
       "overlay": "overlays/flujos_biobio_concepcion_b.webp",
       "leyenda": "overlays/flujos_biobio_concepcion_leyenda.webp",
+      "opacidad": 0.8
+    },
+    {
+      "id": "maule_constitucion",
+      "titulo": "Remociones en Masa — Constitución (Maule)",
+      "region": "Maule",
+      "fuente": "SERNAGEOMIN — Geología para la Reconstrucción y la Gestión del Riesgo",
+      "anio": 2010,
+      "escala": "1:10.000",
+      "informe": "Evaluación preliminar de peligros geológicos: Área de Constitución, Región del Maule. Mapa 13-1 (Venegas, Fernández; Inf. IR-10-43)",
+      "proyeccion_original": "UTM 19S / WGS84 (EPSG:32719); georreferenciado desde el PDF original por control points del grid UTM impreso (residuo <3.5 pt)",
+      "bounds": { "n": -35.315131, "s": -35.349665, "e": -72.393547, "w": -72.448043 },
+      "overlay": "overlays/maule_constitucion.webp",
+      "leyenda": "overlays/maule_constitucion_leyenda.webp",
+      "opacidad": 0.8
+    },
+    {
+      "id": "maule_curico",
+      "titulo": "Remociones en Masa — Curicó (Maule)",
+      "region": "Maule",
+      "fuente": "SERNAGEOMIN — Geología para la Reconstrucción y la Gestión del Riesgo",
+      "anio": 2010,
+      "escala": "1:10.000",
+      "informe": "Evaluación preliminar de peligros geológicos: Área de Curicó, Región del Maule. Mapa 14-1 (Inf. IR-10-43)",
+      "proyeccion_original": "UTM 19S / WGS84 (EPSG:32719); georreferenciado desde el PDF original por control points del grid UTM impreso (residuo <4.5 pt)",
+      "bounds": { "n": -34.960977, "s": -35.012206, "e": -71.188501, "w": -71.274306 },
+      "overlay": "overlays/maule_curico.webp",
+      "leyenda": "overlays/maule_curico_leyenda.webp",
+      "opacidad": 0.8
+    },
+    {
+      "id": "maule_duaoiloca",
+      "titulo": "Remociones en Masa — Duao / Iloca / La Pesca (Maule)",
+      "region": "Maule",
+      "fuente": "SERNAGEOMIN — Geología para la Reconstrucción y la Gestión del Riesgo",
+      "anio": 2010,
+      "escala": "1:10.000",
+      "informe": "Evaluación preliminar de peligros geológicos: Área de Duao-Iloca, Región del Maule. Mapa 15-1 (Inf. IR-10-43)",
+      "proyeccion_original": "UTM 19S / WGS84 (EPSG:32719); georreferenciado desde el PDF original por control points del grid UTM impreso (residuo <3.5 pt)",
+      "bounds": { "n": -34.875749, "s": -34.976381, "e": -72.152151, "w": -72.196995 },
+      "overlay": "overlays/maule_duaoiloca.webp",
+      "leyenda": "overlays/maule_duaoiloca_leyenda.webp",
       "opacidad": 0.8
     }
   ]
