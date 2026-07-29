@@ -25,16 +25,41 @@ al marco del mapa y se reproyecta a WGS84 plate-carrée. Ver `georef_coquimbo_no
 
 ## Mapas incluidos
 
+**31 mapas** en 7 regiones (manifest `version: 3`, actualizado 2026-07-28c).
+
 | id | Región | Escala | Año | Informe |
 |----|--------|--------|-----|---------|
-| coquimbo_norte | Coquimbo (Sector Norte) | 1:250.000 | 2018 | IR-COQ-02 |
-| coquimbo_sur | Coquimbo (Sector Sur) | 1:250.000 | 2021 | IR-COQ-03 (IR-21-88) |
-| valpo_concon | Valparaíso — Concón (Hoja 1 de 3) | 1:10.000 | 2005 | IR-05-29 |
-| valpo_vina_del_mar | Valparaíso — Viña del Mar (Hoja 2 de 3) | 1:10.000 | 2005 | IR-05-29 |
-| valpo_valparaiso | Valparaíso — Valparaíso (Hoja 3 de 3) | 1:10.000 | 2005 | IR-05-29 |
-| ohiggins_rancagua | O'Higgins — Área de Rancagua | 1:100.000 | 2017 | Geología Ambiental Nº29 |
-| flujos_aluvionales_maipo | Metropolitana — Cuenca del Río Maipo | 1:100.000 | 2021 | Susceptibilidad de Flujos Aluvionales (SIGMA) |
-| deslizamientos_laderas_maipo | Metropolitana — Cuenca del Río Maipo | 1:100.000 | 2021 | Susceptibilidad de Deslizamientos de Laderas (SIGMA) |
+| `cruz_de_cana_contexto` | Coquimbo | 1:20.000 aprox. | 2025 | Plano de evacuación Cruz de Caña, Comuna de Coquimbo |
+| `cruz_de_cana_detalle` | Coquimbo | 1:5.000 aprox. | 2025 | Plano de evacuación Cruz de Caña, Comuna de Coquimbo |
+| `islon_flujos_inundacion` | Coquimbo | 1:10.000 | 2026 | Fig |
+| `el_romero_flujos_inundacion` | Coquimbo | 1:5.000 aprox. | 2026 | Zonificacion |
+| `atacama_copiapo_hoja1` | Atacama | 1:100.000 | 2022 | IR-22-99 |
+| `atacama_copiapo_hoja2` | Atacama | 1:100.000 | 2022 | IR-22-99 |
+| `atacama_copiapo_hoja3` | Atacama | 1:100.000 | 2022 | IR-22-99 |
+| `atacama_copiapo_hoja4` | Atacama | 1:100.000 | 2022 | IR-22-99 |
+| `caida_rocas_maipo` | Metropolitana | — | 2021 | Susceptibilidad y propagación de caídas de rocas |
+| `coquimbo_norte` | Coquimbo | 1:250.000 | 2018 | IR-COQ-02 |
+| `coquimbo_sur` | Coquimbo | 1:250.000 | 2021 | IR-COQ-03 |
+| `valpo_concon` | Valparaíso | 1:10.000 | 2005 | IR-05-29 |
+| `valpo_vina_del_mar` | Valparaíso | 1:10.000 | 2005 | IR-05-29 |
+| `valpo_valparaiso` | Valparaíso | 1:10.000 | 2005 | IR-05-29 |
+| `ohiggins_rancagua` | O'Higgins | 1:100.000 | 2017 | Carta Geológica de Chile - Geología Ambiental Nº29 |
+| `flujos_aluvionales_maipo` | Metropolitana | 1:100.000 | 2021 | Susceptibilidad de Flujos Aluvionales |
+| `deslizamientos_laderas_maipo` | Metropolitana | 1:100.000 | 2021 | Susceptibilidad de Deslizamientos de Laderas |
+| `flujos_sjmaipo_peligro` | Metropolitana | 1:25.000 aprox. | 2026 | Mapa de peligro de flujos de la cuenca alta del río Maipo, … |
+| `flujos_lobar_alcance` | Metropolitana | 1:20.000 aprox. | 2026 | Mapa de grado de peligro por alcance de flujos de la cuenca… |
+| `flujos_lobar_generacion` | Metropolitana | 1:20.000 aprox. | 2026 | Mapa de grado de peligro por generación de flujos de la cue… |
+| `flujos_biobio_tirua` | Bío-Bío | 1:10.000 | 2011 | Evaluación preliminar de peligros geológicos: Área de Tirúa… |
+| `flujos_biobio_curanilahue` | Bío-Bío | 1:25.000 | 2011 | Evaluación preliminar de peligros geológicos: Área de Curan… |
+| `flujos_biobio_arauco` | Bío-Bío | 1:10.000 | 2011 | Evaluación preliminar de peligros geológicos: Área de la Ci… |
+| `flujos_biobio_tubul` | Bío-Bío | 1:25.000 | 2011 | Evaluación preliminar de peligros geológicos: Área Caletas … |
+| `flujos_biobio_puntalavapie` | Bío-Bío | 1:10.000 | 2011 | Evaluación preliminar de peligros geológicos: Área de Calet… |
+| `flujos_biobio_penco` | Bío-Bío | 1:10.000 | 2011 | Evaluación preliminar de peligros geológicos: Área de Penco… |
+| `flujos_biobio_concepcion_a` | Bío-Bío | 1:25.000 | 2012 | Evaluación preliminar de peligros geológicos: Área de Conce… |
+| `flujos_biobio_concepcion_b` | Bío-Bío | 1:25.000 | 2012 | Evaluación preliminar de peligros geológicos: Área de Conce… |
+| `maule_constitucion` | Maule | 1:10.000 | 2010 | Evaluación preliminar de peligros geológicos: Área de Const… |
+| `maule_curico` | Maule | 1:10.000 | 2010 | Evaluación preliminar de peligros geológicos: Área de Curic… |
+| `maule_duaoiloca` | Maule | 1:10.000 | 2010 | Evaluación preliminar de peligros geológicos: Área de Duao-… |
 
 Las 3 hojas de Valparaíso comparten una única leyenda (`overlays/valpo_leyenda.webp`, recortada
 de la Hoja 2, la única que la trae completa) y usan datum **PSAD56** (no WGS84): el propio

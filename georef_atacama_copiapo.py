@@ -32,7 +32,7 @@ from pyproj import Transformer
 from pathlib import Path
 
 PDF = r"C:\Users\carlos.venegas\Documents\Sernageomin_Emergencia 2026\Atacama\16120_IR_99_MapasATACAMA.pdf"
-OUT = Path(r"C:\Users\carlos.venegas\Documents\mapas-peligros-overlays\overlays")
+OUT = Path(__file__).parent / "overlays"
 OUT.mkdir(parents=True, exist_ok=True)
 EPSG_UTM = "EPSG:32719"
 DPI = 150

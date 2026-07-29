@@ -25,7 +25,7 @@ from pyproj import Transformer
 from pathlib import Path
 
 SRC = r"C:\Users\carlos.venegas\Documents\Sernageomin_Emergencia 2026\Zonificacion.jpg"
-OUT = Path(r"C:\Users\carlos.venegas\Documents\mapas-peligros-overlays\overlays")
+OUT = Path(__file__).parent / "overlays"
 OUT.mkdir(parents=True, exist_ok=True)
 NAME = "el_romero_flujos_inundacion"
 EPSG_UTM = "EPSG:32719"

@@ -43,7 +43,7 @@ from PIL import Image
 from pyproj import Transformer
 from pathlib import Path
 
-OUT = Path(r"C:\Users\carlos.venegas\Documents\mapas-peligros-overlays\overlays")
+OUT = Path(__file__).parent / "overlays"
 OUT.mkdir(parents=True, exist_ok=True)
 EPSG_UTM = "EPSG:24879"   # PSAD56 / UTM zone 19S (NO 32719, ver docstring)
 DPI = 200

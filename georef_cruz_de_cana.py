@@ -39,7 +39,7 @@ from pathlib import Path
 import fitz, cv2
 
 PDF = r"C:\Users\carlos.venegas\Downloads\CRUZ DE CAÑA (2).pdf"
-OUT = Path(r"C:\Users\carlos.venegas\Documents\mapas-peligros-overlays\overlays")
+OUT = Path(__file__).parent / "overlays"
 OUT.mkdir(parents=True, exist_ok=True)
 DPI = 200
 MAX_PX = 3000

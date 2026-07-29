@@ -22,7 +22,7 @@ from pyproj import Transformer
 from pathlib import Path
 
 PDF = r"C:\Users\carlos.venegas\Documents\Sernageomin_Emergencia 2026\5. COQUIMBO\IR-COQ-03\16024_IR_88_MapaCOQ.pdf"
-OUT = Path(r"C:\Users\carlos.venegas\Documents\mapas-peligros-overlays\overlays")
+OUT = Path(__file__).parent / "overlays"
 NAME = "coquimbo_sur"
 EPSG_UTM = "EPSG:32719"
 DPI = 150

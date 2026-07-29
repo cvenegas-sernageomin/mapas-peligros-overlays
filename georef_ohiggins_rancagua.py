@@ -32,7 +32,7 @@ from pyproj import Transformer
 from pathlib import Path
 
 PDF = r"C:\Users\carlos.venegas\.claude\uploads\9e1a9035-2071-4dd6-9bb5-c9f650628f73\c0ee3863-CGCH_GAMB_29_TextoyMapas_187.pdf"
-OUT = Path(r"C:\Users\carlos.venegas\Documents\mapas-peligros-overlays\overlays")
+OUT = Path(__file__).parent / "overlays"
 NAME = "ohiggins_rancagua"
 EPSG_UTM = "EPSG:32719"   # UTM 19S, SIRGAS ~ WGS84 (ver docstring)
 DPI = 200
