@@ -1,7 +1,22 @@
 {
-  "version": 3,
-  "actualizado": "2026-07-28c",
+  "version": 4,
+  "actualizado": "2026-08-27",
   "mapas": [
+    {
+      "id": "pfi_permafrost",
+      "titulo": "Índice de Favorabilidad de Permafrost (PFI)",
+      "region": "Coquimbo / Atacama (Andes semiáridos)",
+      "fuente": "Azócar, Brenning y Bodin (2017) — andespermafrost.com",
+      "anio": 2017,
+      "escala": "raster 30 m nativo (servido a ~150 m); solo terreno de montaña (máscara)",
+      "informe": "Permafrost distribution modelling in the semi-arid Chilean Andes, The Cryosphere 11, 877-890, doi:10.5194/tc-11-877-2017",
+      "proyeccion_original": "SAGA grid (pfi_andes.sgrd), EPSG:32719 (WGS84 UTM19S), reproyectado a plate-carrée",
+      "bounds": { "n": -27.987513, "s": -33.222765, "e": -69.200522, "w": -70.953546 },
+      "overlay": "overlays/pfi_permafrost.webp",
+      "leyenda": "overlays/pfi_permafrost_leyenda.webp",
+      "opacidad": 0.75,
+      "licencia": "CC BY-SA 4.0"
+    },
     {
       "id": "cruz_de_cana_contexto",
       "titulo": "Plano de Evacuación ante Amenaza de Remoción en Masa — Cruz de Caña (contexto)",
