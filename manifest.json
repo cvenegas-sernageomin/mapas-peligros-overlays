@@ -1,6 +1,6 @@
 {
-  "version": 4,
-  "actualizado": "2026-08-27",
+  "version": 5,
+  "actualizado": "2026-10-12",
   "mapas": [
     {
       "id": "pfi_permafrost",
@@ -110,7 +110,7 @@
       "escala": "1:100.000",
       "informe": "IR-22-99 (16120_IR_99, Fernández & Espinoza)",
       "proyeccion_original": "UTM 19S / SIRGAS (EPSG:32719)",
-      "bounds": { "n": -27.292018, "s": -27.978962, "e": -68.658556, "w": -70.219074 },
+      "bounds": {"n": -27.291412, "s": -27.978958, "e": -68.67864, "w": -70.239775},
       "overlay": "overlays/atacama_copiapo_hoja3.webp",
       "leyenda": "overlays/atacama_copiapo_leyenda.webp",
       "opacidad": 0.75
@@ -306,7 +306,7 @@
       "escala": "1:10.000",
       "informe": "Evaluación preliminar de peligros geológicos: Área de Tirúa, Región del Biobío. Mapa 2-1 (Jara, Moreno, Marín 2011; Inf. IR-12-48)",
       "proyeccion_original": "UTM 19S / WGS84 (EPSG:32719); georreferenciado desde el PDF original por control points del grid UTM impreso (residuo sub-pt)",
-      "bounds": { "n": -38.320481, "s": -38.353696, "e": -73.476586, "w": -73.514675 },
+      "bounds": {"n": -38.320481, "s": -38.353696, "e": -73.474633, "w": -73.516645},
       "overlay": "overlays/flujos_biobio_tirua.webp",
       "leyenda": "overlays/flujos_biobio_tirua_leyenda.webp",
       "opacidad": 0.8
@@ -320,7 +320,7 @@
       "escala": "1:25.000",
       "informe": "Evaluación preliminar de peligros geológicos: Área de Curanilahue, Región del Biobío (Inf. IR-12-48)",
       "proyeccion_original": "UTM 19S / WGS84 (EPSG:32719); georreferenciado desde el PDF original por control points del grid UTM impreso (residuo <2 pt, 1 outlier de lectura descartado)",
-      "bounds": { "n": -37.452841, "s": -37.521969, "e": -73.308941, "w": -73.372523 },
+      "bounds": {"n": -37.452841, "s": -37.521969, "e": -73.305107, "w": -73.376416},
       "overlay": "overlays/flujos_biobio_curanilahue.webp",
       "leyenda": "overlays/flujos_biobio_curanilahue_leyenda.webp",
       "opacidad": 0.8
@@ -334,7 +334,7 @@
       "escala": "1:10.000",
       "informe": "Evaluación preliminar de peligros geológicos: Área de la Ciudad de Arauco, Región del Biobío. Mapa 5-1 (Marín, Ortiz, Falcón, Arenas)",
       "proyeccion_original": "UTM 19S / WGS84 (EPSG:32719); georreferenciado desde el PDF original por control points del grid UTM impreso (residuo sub-pt)",
-      "bounds": { "n": -37.224066, "s": -37.263239, "e": -73.264873, "w": -73.351120 },
+      "bounds": {"n": -37.223707, "s": -37.263564, "e": -73.263965, "w": -73.353691},
       "overlay": "overlays/flujos_biobio_arauco.webp",
       "leyenda": "overlays/flujos_biobio_arauco_leyenda.webp",
       "opacidad": 0.8
@@ -348,7 +348,7 @@
       "escala": "1:25.000",
       "informe": "Evaluación preliminar de peligros geológicos: Área Caletas Tubul-Las Peñas, Región del Biobío. Mapa 7-1 (Marín, Ortiz, Falcón; Inf. IR-8-48)",
       "proyeccion_original": "UTM 19S / WGS84 (EPSG:32719); georreferenciado desde el PDF original por control points del grid UTM impreso (residuo sub-pt); reemplaza los dos KMZ 'Tubul_1'/'Tubul_3' originales, que compartían el mismo extento geográfico mal georreferenciado",
-      "bounds": { "n": -37.197212, "s": -37.278977, "e": -73.384157, "w": -73.503421 },
+      "bounds": {"n": -37.197212, "s": -37.278977, "e": -73.379684, "w": -73.508019},
       "overlay": "overlays/flujos_biobio_tubul.webp",
       "leyenda": "overlays/flujos_biobio_tubul_leyenda.webp",
       "opacidad": 0.8
@@ -362,7 +362,7 @@
       "escala": "1:10.000",
       "informe": "Evaluación preliminar de peligros geológicos: Área de Caleta Punta Lavapié, Región del Biobío. Mapa 6-1 (Marín, Ortiz; Inf. IR-12-48)",
       "proyeccion_original": "UTM 19S / WGS84 (EPSG:32719); georreferenciado desde el PDF original por control points del grid UTM impreso (residuo sub-pt); el KMZ original venía sin datos (LatLonBox con NaN)",
-      "bounds": { "n": -37.139985, "s": -37.165303, "e": -73.570717, "w": -73.610298 },
+      "bounds": {"n": -37.139985, "s": -37.165303, "e": -73.569286, "w": -73.611742},
       "overlay": "overlays/flujos_biobio_puntalavapie.webp",
       "leyenda": "overlays/flujos_biobio_puntalavapie_leyenda.webp",
       "opacidad": 0.8
@@ -376,7 +376,7 @@
       "escala": "1:10.000",
       "informe": "Evaluación preliminar de peligros geológicos: Área de Penco, Región del Biobío",
       "proyeccion_original": "UTM 19S / WGS84 (EPSG:32719); georreferenciado desde el PDF original por control points del grid UTM impreso (residuo sub-pt)",
-      "bounds": { "n": -36.693822, "s": -36.757295, "e": -72.954165, "w": -73.010138 },
+      "bounds": {"n": -36.693822, "s": -36.757295, "e": -72.951009, "w": -73.013341},
       "overlay": "overlays/flujos_biobio_penco.webp",
       "leyenda": "overlays/flujos_biobio_penco_leyenda.webp",
       "opacidad": 0.8
@@ -390,7 +390,7 @@
       "escala": "1:25.000",
       "informe": "Evaluación preliminar de peligros geológicos: Área de Concepción-Talcahuano-Hualpén-Chiguayante, Región del Biobío. Mapa 12-1a (Falcón, Ramírez, Arenas, Cravatt, Huerta, Marín)",
       "proyeccion_original": "UTM 19S / WGS84 (EPSG:32719); georreferenciado desde el PDF original por control points del grid UTM impreso (residuo sub-pt)",
-      "bounds": { "n": -36.606568, "s": -36.797300, "e": -73.028090, "w": -73.215138 },
+      "bounds": {"n": -36.606568, "s": -36.7973, "e": -73.018487, "w": -73.225208},
       "overlay": "overlays/flujos_biobio_concepcion_a.webp",
       "leyenda": "overlays/flujos_biobio_concepcion_leyenda.webp",
       "opacidad": 0.8
@@ -404,7 +404,7 @@
       "escala": "1:25.000",
       "informe": "Evaluación preliminar de peligros geológicos: Área de Concepción-Talcahuano-Hualpén-Chiguayante, Región del Biobío. Mapa 12-1b (Falcón, Ramírez, Arenas, Cravatt, Huerta, Marín)",
       "proyeccion_original": "UTM 19S / WGS84 (EPSG:32719); georreferenciado desde el PDF original por control points del grid UTM impreso (residuo sub-pt)",
-      "bounds": { "n": -36.771893, "s": -36.962725, "e": -72.987613, "w": -73.173062 },
+      "bounds": {"n": -36.771806, "s": -36.962618, "e": -72.978045, "w": -73.182837},
       "overlay": "overlays/flujos_biobio_concepcion_b.webp",
       "leyenda": "overlays/flujos_biobio_concepcion_leyenda.webp",
       "opacidad": 0.8
